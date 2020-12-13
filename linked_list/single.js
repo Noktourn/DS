@@ -57,13 +57,51 @@ class LinkedList {
     ++this.#size;
     return true;
   }
+
+  deleteAt(index) {
+    if (index < 0 || index === this.#size || this.#size === 0) return false;
+    if (index === 0) {
+      this.#head = this.#head.next;
+      --this.#size;
+      return true;
+    }
+
+    let counter = index;
+    let previous = null;
+    let current = this.#head;
+    while (counter > 0 && current.next) {
+      previous = current;
+      current = current.next;
+      --counter;
+    }
+
+    previous.next = current.next;
+    --this.#size;
+
+    return true;
+  }
+
+  toString() {
+    let current = this.#head;
+    let st = current.data;
+    while (current.next) {
+      current = current.next;
+      st += " -> ";
+      st += current.data;
+    }
+    return st;
+  }
 }
 
-const LS = new LinkedList();
+// const LS = new LinkedList();
 
-LS.add("chriff");
-LS.add("alae");
-LS.add("hmida");
-LS.add("ziko");
+// LS.add("chriff"); //0
+// LS.add("alae"); //1
+// LS.add("zakaria"); //2
+// LS.add("anas"); //3
 
-console.log(LS.size() === 4);
+// console.log(LS.size());
+// console.log(LS.toString());
+// LS.deleteAt(0);
+// LS.deleteAt(2);
+// console.log(LS.toString());
