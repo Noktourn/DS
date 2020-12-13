@@ -1,0 +1,12 @@
+{
+  "name": "data_structures",
+  "version": "1.0.0",
+  "description": "learning to implement some data structures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["data structures", "algorithms"],
+  "author": "Noktourn (Charaf Eddine Bounouar)",
+  "license": "ISC"
+}
