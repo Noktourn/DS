@@ -58,12 +58,24 @@ class LinkedList {
     return true;
   }
 
+  /**Deletes first node.
+   * @returns {boolean} true if node was deleted or false otherwise.
+   */
+  delete() {
+    if (this.#size === 0) return false;
+    this.#head = this.#head.next;
+    --this.#size;
+    return true;
+  }
+
+  /**Delete node at the provided index.
+   * @param  {Number} index an integer between 0 inclusive and size exclusive.
+   * @returns {boolean} true if node was deleted or false otherwise.
+   */
   deleteAt(index) {
     if (index < 0 || index === this.#size || this.#size === 0) return false;
     if (index === 0) {
-      this.#head = this.#head.next;
-      --this.#size;
-      return true;
+      this.delete();
     }
 
     let counter = index;
