@@ -60,6 +60,23 @@ class BST {
     }
   }
 
+  search(value) {
+    if (this.#root === null) return null;
+
+    return this.searchNode(this.#root, value);
+  }
+
+  searchNode(node, value) {
+    if (!node) return null;
+    if (node.data === value) return node;
+
+    if (value < node.data) {
+      return this.searchNode(node.left, value);
+    }
+
+    return this.searchNode(node.right, value);
+  }
+
   traverse(mode) {
     switch (mode) {
       case "INORDER":
@@ -109,5 +126,8 @@ class BST {
 // BSTI.insert(5);
 // BSTI.insert(1);
 // BSTI.insert(50);
+// BSTI.insert(3);
+// BSTI.insert(6);
 // console.log("size", BSTI.size());
 // BSTI.traverse("INORDER");
+// console.log("find eleme", BSTI.search(50));
