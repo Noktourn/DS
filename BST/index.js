@@ -77,6 +77,46 @@ class BST {
     return this.searchNode(node.right, value);
   }
 
+  remove(value) {
+    if (!this.#root) return null;
+    const FOUND = this.search(value);
+    if (FOUND) {
+      this.removeNode(this.#root, value);
+      --this.#size;
+      return FOUND;
+    }
+    return null;
+  }
+
+  removeNode(node, value) {
+    if (value < node.data) {
+      node.left = this.removeNode(node.left, value);
+    } else if (value > node.data) {
+      node.right = this.removeNode(node.right, value);
+    } else {
+      if (!node.left) {
+        return node.right;
+      } else if (!node.right) {
+        return node.left;
+      } else {
+        let NODE = this.findMin(node.right);
+        node.data = NODE.data;
+        node.right = this.removeNode(node.right, NODE.data);
+      }
+    }
+    return node;
+  }
+
+  findMin(node = this.#root) {
+    while (node.left) node = node.left;
+    return node;
+  }
+
+  findMax(node = this.#root) {
+    while (node.right) node = node.right;
+    return node;
+  }
+
   traverse(mode) {
     switch (mode) {
       case "INORDER":
@@ -131,3 +171,8 @@ class BST {
 // console.log("size", BSTI.size());
 // BSTI.traverse("INORDER");
 // console.log("find eleme", BSTI.search(50));
+// BSTI.remove(5);
+// console.log("---------------------------------------");
+// BSTI.traverse("INORDER");
+// console.log(BSTI.findMin());
+// console.log(BSTI.findMax());
