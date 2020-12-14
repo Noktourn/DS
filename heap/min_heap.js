@@ -10,22 +10,29 @@ class Min_Heap {
     this.#root = new Array(capacity).fill(null);
     this.#size = 0;
   }
-
+  /**
+   * Returns the size of the heap
+   */
   size() {
     return this.#size;
   }
-
+  /**Adds a value to the heap.
+   * @param  {any} value value to be added to the heap.
+   */
   insert(value) {
     this.#root[this.#size] = value;
-    console.log("--------------");
     ++this.#size;
     this.swim();
   }
-
+  /**
+   * Gets the min value of the heap.
+   */
   peek() {
     return this.#root[0];
   }
-
+  /**
+   * Gets the min value of the heap and remove it.
+   */
   poll() {
     if (this.#size === 0) return null;
     const NODE = this.#root[0];
@@ -36,6 +43,9 @@ class Min_Heap {
     return NODE;
   }
 
+  /**
+   * Puts the inserted element in its correct position.
+   */
   swim() {
     let index = this.#size - 1;
     while (this.hasParent(index) && this.parent(index) > this.#root[index]) {
@@ -45,6 +55,9 @@ class Min_Heap {
     }
   }
 
+  /**
+   * Puts last element in the correct position after a poll.
+   */
   sink() {
     let index = 0;
     while (this.hasLeftChild(index)) {
